@@ -37,10 +37,18 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+autoload -Uz colorsi
+autoload -Uz compinit
+compinit
 
-export LC_ALL=en_US.UTF-8
+precmd () {
+  psvar=()
+  export LANG=ja_JP.UTF-8
+  export LC_ALL=ja_JP.UTF-8
+  export MANPAGER='less -R'
+}
 
-export MANPAGER='less -R'
+
 man(){
 	env \
 		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -53,5 +61,24 @@ man(){
 		man "$@"
 }
 
+zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/loal/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:processes' command 'ps x -o pid, s, args'
 
+setopt print_eight_bit
+setopt auto_menu
+setopt hist_ignore_all_dups
+
+bindkey '^R' history-incremental-pattern-search-backward
+
+alias la='ls -a'
+alias ll='ls -l'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias sudo='sudo '
+alias df='df -h'
+
+SPROMPT="%{$fg[yellow]%}%{$suggest%}(＠ﾟ□ ﾟ)ノ < %B%r%b %{$fg[yellow]%}かな? [yes(y), no(n),a,e]:${reset_color} "
 

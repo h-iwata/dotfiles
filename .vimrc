@@ -1,20 +1,26 @@
-filetype off
-
 set nocompatible
 set number
 set title
 set mouse=a
 set nocompatible
 set hidden
+set clipboard+=unnamed
+set nowritebackup
+set nobackup
 set showmatch
 set autoindent
 set smartindent
 set shiftwidth=2
 set tabstop=2
-set foldlevel=100
+set softtabstop=2
 set smarttab
 set expandtab
+set foldlevel=100
+
+set ruler
+set showcmd
 set rtp+=~/.vim/bundle/vundle/
+
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -23,16 +29,18 @@ Bundle 'gmarik/vundle'
 " plugin bundles
 " --------------
 
+Bundle 'jQuery'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'leshill/vim-json'
 Bundle 'xml.vim'
 
 Bundle "Distinguished"
-syntax enable
+set background=dark
 set t_Co=256
-colorscheme distinguished
+syntax enable
 
+colorscheme distinguished
 Bundle 'scrooloose/nerdtree'
 let NERDTreeShowHidden = 1
 let file_name = expand("%:p")
