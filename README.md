@@ -12,4 +12,6 @@ INSTALL (MEMO)
 
 `git clone git://github.com/git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh`
 
+`source .zshrc`
+
 `vundle`
