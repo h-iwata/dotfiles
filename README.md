@@ -2,14 +2,13 @@ for private use
 
 INSTALL (MEMO)
 
-cd ~
+`cd ~`
 
-git clone git://github.com/h-iwata/dotfiles
-git clone git://github.com/gmarik/vundle.git dotfiles/vimfiles/bundle/vundle
+`git clone git://github.com/h-iwata/dotfiles`
+`git clone git://github.com/gmarik/vundle.git dotfiles/vimfiles/bundle/vundle`
 
-ln -s dotfiles/.vimrc .vimrc
-ln -s dotfiles/vimfiles .vim
+`ln -s dotfiles/.vimrc .vimrc`
+`ln -s dotfiles/vimfiles .vim`
 
-vim
-
-:BundleInstall
+`vim`
+`:BundleInstall`
