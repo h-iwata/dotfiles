@@ -43,10 +43,11 @@ compinit
 
 precmd () {
   psvar=()
-  export LANG=ja_JP.UTF-8
-  export LC_ALL=ja_JP.UTF-8
   export MANPAGER='less -R'
 }
+
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 
 
 man(){
