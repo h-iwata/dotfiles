@@ -1,3 +1,5 @@
+syntax enable
+
 set nocompatible
 set number
 set title
@@ -38,9 +40,8 @@ Bundle 'xml.vim'
 Bundle "Distinguished"
 set background=dark
 set t_Co=256
-syntax enable
-
 colorscheme distinguished
+
 Bundle 'scrooloose/nerdtree'
 let NERDTreeShowHidden = 1
 let file_name = expand("%:p")
