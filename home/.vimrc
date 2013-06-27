@@ -1,6 +1,6 @@
-syntax enable
-
 set nocompatible
+filetype off 
+
 set number
 set title
 set mouse=a
@@ -18,11 +18,13 @@ set softtabstop=2
 set smarttab
 set expandtab
 set foldlevel=100
-
 set ruler
 set showcmd
-set rtp+=~/.vim/bundle/vundle/
 
+set t_Co=256
+set background=dark
+
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -36,13 +38,14 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'leshill/vim-json'
 Bundle 'xml.vim'
-
 Bundle "Distinguished"
-set background=dark
-set t_Co=256
+Bundle 'scrooloose/nerdtree'
+
+syntax on
+filetype plugin indent on
+
 colorscheme distinguished
 
-Bundle 'scrooloose/nerdtree'
 let NERDTreeShowHidden = 1
 let file_name = expand("%:p")
 if has('vim_starting') && file_name == ""
@@ -73,7 +76,6 @@ autocmd BufEnter * NERDTreeMirror
 
 noremap <c-s> <Esc>:w<cr>
 
-filetype plugin indent on
 
 
 
