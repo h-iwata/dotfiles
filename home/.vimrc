@@ -40,40 +40,26 @@ Bundle 'leshill/vim-json'
 Bundle 'xml.vim'
 Bundle "Distinguished"
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 syntax on
 filetype plugin indent on
 
 colorscheme distinguished
 
-let NERDTreeShowHidden = 1
+let NERDTreeShowHidden = 1 
 let file_name = expand("%:p")
-if has('vim_starting') && file_name == ""
-	autocmd VimEnter * call ExecuteNERDTree()
-endif
-function! ExecuteNERDTree()
-  "b:nerdstatus = 1 : NERDTree 表示中
-  "b:nerdstatus = 2 : NERDTree 非表示中
-  if !exists('g:nerdstatus')
-    execute 'NERDTree ./'
-    let g:windowWidth = winwidth(winnr())
-    let g:nerdtreebuf = bufnr('')
-    let g:nerdstatus = 1
-  elseif g:nerdstatus == 1
-    execute 'wincmd t'
-    execute 'vertical resize' 0
-    execute 'wincmd p'
-    let g:nerdstatus = 2
-  elseif g:nerdstatus == 2
-    execute 'wincmd t'
-    execute 'vertical resize' g:windowWidth
-    let g:nerdstatus = 1
-  endif
-endfunction
-noremap <c-e> :<c-u>:call ExecuteNERDTree()<cr>
-autocmd BufEnter * NERDTreeMirror
 
-noremap <c-s> <Esc>:w<cr>
+let nerdtree_tabs_open_on_console_startup=1
+
+if has('vim_starting') && file_name == ""
+  "autocmd VimEnter *  :NERDTreeTabsToggle
+endif
+map <F4> <plug>NERDTreeTabsToggle<CR>
+
+inoremap <C-s> <Esc>:w<cr>
+inoremap <C-q> <Esc>:q<cr>
+
 
 
 
