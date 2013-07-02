@@ -33,6 +33,7 @@ Bundle 'gmarik/vundle'
 " plugin bundles
 " --------------
 
+Bundle 'b4winckler/vim-objc'
 Bundle 'jQuery'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
