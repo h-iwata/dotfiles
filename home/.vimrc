@@ -57,8 +57,9 @@ if has('vim_starting') && file_name == ""
 endif
 map <F4> <plug>NERDTreeTabsToggle<CR>
 
-inoremap <C-s> <Esc>:w<cr>
-inoremap <C-q> <Esc>:q<cr>
+inoremap <c-s> <Esc>:w<cr>
+inoremap <c-q> <Esc>:q<cr>
+nnoremap <c-q> <Esc>:q<cr>
 
 
 

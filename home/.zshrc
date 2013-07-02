@@ -82,3 +82,13 @@ alias df='df -h'
 
 SPROMPT="%{$fg[yellow]%}%{$suggest%}(＠ﾟ□ ﾟ)ノ < %B%r%b %{$fg[yellow]%}かな? [yes(y), no(n),a,e]:${reset_color} "
 
+
+stty -ixon -ixoff
+
+
+
+
+
+
+
+
