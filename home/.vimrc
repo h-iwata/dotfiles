@@ -60,10 +60,10 @@ map <F4> <plug>NERDTreeTabsToggle<CR>
 
 inoremap <c-s> <Esc>:w<cr>
 inoremap <c-q> <Esc>:q<cr>
+nnoremap <c-s> <Esc>:w<cr>
 nnoremap <c-q> <Esc>:q<cr>
 
-
-
+autocmd BufNewFile,BufRead *.h set filetype=objc
 
 
 
