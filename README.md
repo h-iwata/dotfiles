@@ -8,7 +8,7 @@ INSTALL (MEMO)
 
 `homesick clone h-iwata/dotfiles`
 
-`homesick symlink h-iwata/dotfiles`
+`homesick symlink dotfiles`
 
 `git clone git://github.com/git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh`
 
