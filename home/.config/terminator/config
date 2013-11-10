@@ -1,0 +1,26 @@
+[global_config]
+  title_transmit_bg_color = "#356f6a"
+  title_inactive_fg_color = "#c0bbbb"
+  title_inactive_bg_color = "#0a2f2c"
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    visible_bell = True
+    background_darkness = 0.66
+    background_type = transparent
+    background_image = /home/h-iwata/test.png
+    scroll_background = False
+    cursor_shape = underline
+    font = Inconsolate Medium 13
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
