@@ -24,26 +24,27 @@ set showcmd
 set t_Co=256
 set background=dark
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " --------------
 " plugin bundles
 " --------------
 
-Bundle 'b4winckler/vim-objc'
-Bundle 'jQuery'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'leshill/vim-json'
-Bundle 'xml.vim'
-Bundle "Distinguished"
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'b4winckler/vim-objc'
+Plugin 'jQuery'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'leshill/vim-json'
+Plugin 'xml.vim'
+Plugin 'Distinguished'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 syntax on
+
+call vundle#end()            
 filetype plugin indent on
 
 colorscheme distinguished
