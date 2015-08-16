@@ -85,12 +85,18 @@ SPROMPT="%{$fg[yellow]%}%{$suggest%}(＠ﾟ□ ﾟ)ノ < %B%r%b %{$fg[yellow]%}�
 
 stty -ixon -ixoff
 
+export PATH=$PATH:~/.composer/vendor/bin
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
  # include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
 
-
+if [ -f "$HOME/.bash_profile" ]; then
+  . "$HOME/.bash_profile"
+fi
 
 
 
