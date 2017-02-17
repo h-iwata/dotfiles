@@ -1,0 +1,16 @@
+packages: [
+  "angular2-snippets-atom"
+  "atom-typescript"
+  "editorconfig"
+  "es6-javascript"
+  "goto-definition"
+  "language-api-blueprint"
+  "language-javascript-jsx"
+  "language-volt"
+  "linter"
+  "minimap"
+  "multi-cursor"
+  "package-sync"
+  "Sublime-Style-Column-Selection"
+  "xml-formatter"
+]

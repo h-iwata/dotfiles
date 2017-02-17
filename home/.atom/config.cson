@@ -4,6 +4,7 @@
       "atom-typescript"
     ]
     telemetryConsent: "no"
+    useCustomTitleBar: true
   editor:
     fontSize: 13
     showInvisibles: true
@@ -12,5 +13,7 @@
     userId: "78b1424f-3926-0492-f275-2d87bcb6e6ba"
   "line-ending-selector":
     defaultLineEnding: "LF"
+  "package-sync":
+    createOnChange: true
   welcome:
     showOnStartup: false
