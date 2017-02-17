@@ -1,0 +1,16 @@
+"*":
+  core:
+    disabledPackages: [
+      "atom-typescript"
+    ]
+    telemetryConsent: "no"
+  editor:
+    fontSize: 13
+    showInvisibles: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "78b1424f-3926-0492-f275-2d87bcb6e6ba"
+  "line-ending-selector":
+    defaultLineEnding: "LF"
+  welcome:
+    showOnStartup: false
