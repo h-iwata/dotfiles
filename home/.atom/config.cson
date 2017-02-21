@@ -7,6 +7,7 @@
     useCustomTitleBar: true
   editor:
     fontSize: 13
+    scrollPastEnd: true
     showInvisibles: true
     tabType: "soft"
   "exception-reporting":
