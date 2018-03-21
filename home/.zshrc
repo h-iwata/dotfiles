@@ -87,7 +87,6 @@ stty -ixon -ixoff
 
 export PATH=$PATH:~/.composer/vendor/bin
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 
  # include .bashrc if it exists

@@ -1,10 +1,7 @@
 "*":
   core:
-    disabledPackages: [
-      "atom-typescript"
-    ]
     telemetryConsent: "no"
-    useCustomTitleBar: true
+    titleBar: "custom"
   editor:
     fontSize: 13
     scrollPastEnd: true
