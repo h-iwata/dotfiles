@@ -20,7 +20,7 @@ INSTALL (MEMO)
 ### atom package list
 
 *export*
-apm list --installed --bare packages.list
+apm list --installed --bare > .atom/packages.txt
 
 *import*
-apm install --packages-file packages.list
+apm install --packages-file .atom/packages.txt
