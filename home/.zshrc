@@ -118,3 +118,6 @@ export PATH=$NDK_ROOT:$PATH
 export ANDROID_SDK_ROOT=/Users/h-iwata/Library/Android/sdk
 export PATH=$ANDROID_SDK_ROOT:$PATH
 export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

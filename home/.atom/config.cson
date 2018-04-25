@@ -1,17 +1,45 @@
 "*":
+  "activate-power-mode":
+    playAudio:
+      enabled: true
+    plugins:
+      playAudio: true
+      screenShake: true
   core:
+    disabledPackages: [
+      "goto-definition"
+      "activate-power-mode"
+      "language-gfm"
+    ]
+    openEmptyEditorOnStart: false
     telemetryConsent: "no"
     titleBar: "custom"
   editor:
-    fontSize: 13
+    fontSize: 15
     scrollPastEnd: true
     showInvisibles: true
     tabType: "soft"
   "exception-reporting":
     userId: "78b1424f-3926-0492-f275-2d87bcb6e6ba"
+  "goto-definition":
+    performanceMode: true
+  "js-hyperclick":
+    extensions: [
+      ".js"
+      ".json"
+      ".node"
+      ".jsx"
+    ]
+    usePendingPanes: true
   "line-ending-selector":
     defaultLineEnding: "LF"
+  "linter-eslint":
+    fixOnSave: true
+    ignoreFixableRulesWhileTyping: true
+  "linter-ui-default":
+    showPanel: true
   "package-sync":
     createOnChange: true
+  "tree-view": {}
   welcome:
     showOnStartup: false

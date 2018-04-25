@@ -1,6 +1,7 @@
 for private use
 
 INSTALL (MEMO)
+----------------
 
 `gem install homesick`
 
@@ -15,3 +16,11 @@ INSTALL (MEMO)
 `source .zshrc`
 
 `vundle`
+
+### atom package list
+
+*export*
+apm list --installed --bare packages.list
+
+*import*
+apm install --packages-file packages.list
