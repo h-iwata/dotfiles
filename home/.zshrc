@@ -121,3 +121,16 @@ export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/mysql@8.0/bin:$PATH"
+
+export ATOM_DEV_RESOURCE_PATH="$HOME/workspace/programming/javascript/atom"
+eval $(brew shellenv)
+
+# brew
+export HOMEBREW_PREFIX="/usr/local";
+export HOMEBREW_CELLAR="/usr/local/Cellar";
+export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
+export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}";
+export MANPATH="/usr/local/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
+eval "$(pyenv init -)"

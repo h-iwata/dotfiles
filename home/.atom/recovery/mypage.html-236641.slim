@@ -1,0 +1,232 @@
+= javascript_include_tag 'faq'
+.container
+  .event-main
+    .inner
+      ul.tab
+        li#menu-1.list1
+          | CAMP
+        li#menu-2.list2
+          | SCHOOL
+      ul.content
+        li.hide.panel1
+          - if @preentry_camp_parents.present? || @preentry_camps.present?
+            h4 プレエントリー
+            table.camp
+              thead
+                tr
+                  th.th-camp
+                    | プレエントリー
+                  th.th-stay-plan
+                    | エントリー締め切り日
+                  th.th-payment-status
+                    |
+              tbody
+                - @preentry_camps.each do |preentry_camp|
+                  tr
+                    td
+                      p.camp-name = preentry_camp.name
+                    td
+                      = preentry_camp.end_date
+                    td
+                      span.btn-guide
+                        =  link_to 'プレエントリー', preentry_camp_path(preentry_camp), { class: 'fa fa-file-text', target: '_blank' }
+                - @preentry_camp_parents.each do |preentry_camp_parent|
+                  tr
+                    td
+                      p.camp-name = preentry_camp_parent.preentry_camp.name
+                    td
+                      = preentry_camp_parent.preentry_camp.end_date
+                    td
+                      span.btn-guide
+                        - if preentry_camp_parent.preentry_camp.entry_started?
+                          =  link_to '本申し込みする', apply_start_camp_path(preentry_camp_parent.preentry_camp.camp), { class: 'fa fa-file-text', target: '_blank' }
+                          span.btn-guide
+                          = "最大#{preentry_camp_parent.preentry_camp.max_discount(@parent)}円引き"
+                        - else
+                          i.fa.fa-file-text
+                          |  プレエントリー済
+
+            h4 キャンプ参加情報
+          label
+            input.pastcampcheck(type="checkbox")
+            | &nbsp;&nbsp;過去のキャンプを表示
+          table.camp
+            thead
+              tr
+                th.th-camp
+                  | キャンプ
+                th.th-stay-plan
+                  | 宿泊
+                th.th-student
+                  | 参加者
+                th.th-payment-status
+                  | お支払い状況
+                th.th-price
+                  | ご請求金額
+                th
+            tbody
+              - @parent_statuses.each do |parent_status|
+                - status = parent_status.status
+                - all_cancelled = parent_status.cancelled?
+                - camp = parent_status.camp
+                - parent_status.student_statuses.each_with_index do |ss, index|
+                    - is_cancelled = ss.cancelled?
+                    tr class=[(all_cancelled ? 'cancelled' : ''),(ss.plan.end_date < Date.today ? 'pastcamplist' : '')]
+                      td class=(is_cancelled ? 'cancelled' : '')
+                        p.camp-name = camp.name
+                        div = ss.plan.name
+                        span.btn-guide
+                          - if !is_cancelled && camp.guide_send_weeks_before_or_default.weeks.ago(ss.plan.start_date) <= Date.today
+                            = link_to 'キャンプガイド', guide_student_status_path(ss), { class: 'fa fa-file-text', target: '_blank' }
+                          - else
+                            i.fa.fa-file-text
+                            |  キャンプガイド
+                      td class=(is_cancelled ? 'cancelled' : '')
+                        = ss.stayplan.try(:option_name)
+                      td class=(is_cancelled ? 'cancelled' : '')
+                        div
+                          = ss.student.full_name
+                          - if !is_cancelled
+                            - unless parent_status.is_only_applied_student_status ss
+                              br
+                              span.btn-edit
+                                - if ss.cancels_allowed?
+                                  = link_to t('cancel_one'), cancel_start_student_status_path(ss), { class: 'fa fa-times fa-fw' }
+                                - else
+                                  = t('cancel_one')
+                      - rowspan = parent_status.student_statuses.length
+                      - if index == 0
+                        td[rowspan="#{rowspan}"]
+                          - if camp.is_free && parent_status.paid?
+                            = I18n.t('completed')
+                          - else
+                            = I18n.t(status)
+                      - if index == 0
+                        td[rowspan="#{rowspan}"]
+                          = split_with_comma(parent_status.price)
+                          |  円
+                      - if index == 0
+                        td.nowrap[rowspan="#{rowspan}"]
+                          - if !all_cancelled
+                            span.btn-edit
+                              = link_to t('detail'), parent_status, { class: "fa fa-book fa-fw" }
+                            br
+                            span.btn-edit
+                              - if parent_status.cancels_allowed?
+                                = link_to t('cancel'), cancel_start_parent_status_path(parent_status), { class: 'fa fa-times fa-fw' }
+                              - else
+                                span.fa.fa-times.fa-fw
+                                  = t('cancel')
+                            br
+                            span.btn-edit
+                              / FIXME Special case handling for Spring 2017 camp
+                              /   This will be replaced by proper support for edits.
+                              - if parent_status.parent_status_change_requests.pending.count > 0
+                                = link_to t('wait_change_request'), show_parent_status_change_request_path(parent_status.parent_status_change_requests.pending.first), { class: 'fa fa-gear fa-fw' }
+                              - elsif parent_status.change_requests_allowed?
+                                = link_to t('edit'), edit_parent_status_path(parent_status), { class: 'fa fa-gear fa-fw' }
+                              - else
+                                span.fa.fa-gear.fa-fw
+                                  = t('edit')
+
+          p.apply-btn
+            - camp = Camp.find_by(path: MembersConfiguration['camp_link'])
+            - if camp && !camp.passed_apply_deadline?
+              = render 'camp_link', camp: camp
+        li.hide.panel2
+          - if @parent.stripe_customer.present?
+            .credit
+              = link_to 'クレジットカード情報', credits_path, class: "fa fa-credit-card"
+          - if @show_school_continue_survay
+            h4 申し込み情報
+          table
+            thead
+              tr
+                th
+                  | 期間
+                th
+                  | 希望日時
+                th
+                  | コース
+                th
+                  | 参加者
+                th
+                  | 申込状況
+                th
+            tbody
+              - @parent.school_applications.includes({ day_location: [ :school_season ] }, :course, :student).active.each do |sa|
+                tr class=(sa.cancelled? ? 'cancelled' : '')
+                  td
+                    = "#{full_date_format_nowday sa.start_date} 〜 #{full_date_format_nowday sa.end_date}"
+                  td
+                    = sa.day_location.name
+                  td
+                    = sa.course.name
+                  td
+                    = sa.student.full_name
+                  td
+                    = sa.payment_str
+                  td.action-column
+                    - if sa.can_read_guide?
+                      div
+                        = link_to t('guide'), guide_school_application_path(sa)
+                    - if !sa.cancelled?
+                      div
+                        = link_to t('details'), school_application_path(sa)
+                      - unless sa.passed_apply_deadline? || sa.school_attendances.first.school_day.day_location.season == 14
+                        div
+                          = link_to t('edit'), edit_school_application_path(sa)
+                        div
+                          = link_to t('cancel'), cancel_school_application_path(sa)
+                    - if sa.can_view_pre_absence?
+                        div
+                          = link_to t(:pre_absence_request),
+                              pre_absence_request_school_application_path(sa)
+                    - if sa.should_ask_continue_survey?
+                        div
+                        = link_to t(:continue_survey), season_change_school_application_path(sa)
+          - if @show_school_continue_survay
+            h4 継続希望情報
+            table
+              thead
+                tr
+                  th
+                    | 期間
+                  th
+                    | 希望日時
+                  th
+                    | コース
+                  th
+                    | 参加者
+                  th
+                    | 継続希望ステータス
+                  th
+              tbody
+                - @parent.school_applications.includes({ day_location: [ :school_season ] }, :course, :student).active.each do |sa|
+                  - if sa.school_season.is_current? && sa.survey_answered?
+                    tr class=(sa.cancelled? ? 'cancelled' : '')
+                      td
+                        = sa.school_next_season_survey.tbd? || sa.school_next_season_survey.quit? ? nil : "#{full_date_format_nowday sa.school_next_season_survey.day_location.start_date} 〜 #{full_date_format_nowday sa.school_next_season_survey.day_location.end_date}"
+                      td
+                        = sa.school_next_season_survey.tbd? || sa.school_next_season_survey.quit? ? nil : sa.school_next_season_survey.day_location.name
+                      td
+                        = sa.school_next_season_survey.tbd? || sa.school_next_season_survey.quit? ? nil : sa.school_next_season_survey.course.name
+                      td
+                        = sa.student.full_name
+                      td
+                        = sa.school_next_season_survey.status_i18n
+                      td.action-column
+                        - if sa.should_ask_continue_survey?
+                            div
+                            = link_to "変更", season_change_school_application_path(sa)
+        li.hide.panel3
+          |  panel3
+        li.hide.panel4
+          |  panel4
+        li.hide.panel5
+          |  panel5
+  .main
+    .inner
+      = render partial: 'introduction_coupon', locals: { introduction_coupon: @introduction_coupon }
+      = render partial: 'faq', locals: { faqs: FrequentlyAskedQuestion.all }
+  = render partial: 'sub', locals: { introduction_coupon: @introduction_coupon }

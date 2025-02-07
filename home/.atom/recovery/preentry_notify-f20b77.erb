@@ -1,0 +1,30 @@
+<%= @parent.full_name %>　様
+
+
+お世話になっております。Life is Tech ! 運営事務局です。
+この度はLife is Tech ! <%= @preentry_camp_parent.camp.name %> プレエントリー、
+誠にありがとうございます！！
+
+本お申込み時にMEMBERSにログインしてお申込みいただくことで、キャンプ基本料金から【<%= @preentry_camp.get_discount_rate(@preentry_camp_parent.parent) %> %OFF】が自動的に適応されます。
+
+本申込み開始時には、メールにてお知らせいたします。今しばらくお待ちください。
+
+なお、プレエントリーのみではお席の確保とはなりません。キャンプ約款にご同意頂いた上で、改めて本お申し込みをお願いする形となります。
+本申し込みをお忘れなく！
+
+◉MEMBERS（お客様ページ）について
+お申込み内容はMEMBERSからご覧いただけます。
+下記URLよりログインください。
+
+URL：https://members.life-is-tech.com
+ログインID：[メールアドレス] 、 [電話番号] のいずれか
+パスワード：(お申込時に設定されたパスワード)
+
+※パスワードをお忘れの方、ご不明の方は、こちらから再設定をお願いいたします。
+https://members.life-is-tech.com/password/new
+
+以上となります。
+<%= #{@preentry_camp_parent.camp.name} %> でお会いできることを心待ちにしております！
+
+
+<%= render file: 'user_mailer/_signature' %>
